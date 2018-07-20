@@ -19,3 +19,11 @@ class EnergyElement(BaseElement):
 
 class NerveElement(BaseElement):
     locator = locators.NERVE_VALUE
+
+
+class HappyElement(BaseElement):
+    locator = locators.HAPPY_VALUE
+
+
+class LifeElement(BaseElement):
+    locator = locators.LIFE_VALUE

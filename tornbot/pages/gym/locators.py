@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 TRAIN_COST = (By.XPATH, '//span[@class="energycost"]')
 
 STRENGTH_DIV = (By.ID, 'divStrength')
-STRENGTH_INPUT = (By.XPATH, '//input[@id="strengthValue"]')
+STRENGTH_INPUT = (By.XPATH, '//input[@name="strength"]')
 STRENGTH_TRAIN = (By.ID, '1')
 DEFENSE_DIV = (By.ID, 'divDefence')
 DEFENSE_INPUT = (By.XPATH, '//input[@name="defense"]')

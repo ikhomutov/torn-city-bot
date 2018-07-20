@@ -5,37 +5,39 @@ from selenium.common.exceptions import NoSuchElementException
 from . import constants
 from . import locators
 from ..base.page import BasePage
-from ..base.decorators import ensure_on_page
+from ...decorators import detect_captcha
+from ...decorators import ensure_on_page
 
 
 class GymPage(BasePage):
     url = 'gym.php'
 
     @ensure_on_page
+    @detect_captcha
     def train(self, stat, points=None):
         stat_locators = constants.STAT_MAPPING.get(stat)
         stat_container = self.find_element(stat_locators.get('div'))
         train_cost = stat_container.find_element(*locators.TRAIN_COST).text
         points_required = int(train_cost) * (points or 1)
         if int(self.curr_energy) < points_required:
-            # TODO: logging!!!
-            print('Not enough energy!')
-            return
+            print('Not enough energy to train %s' % stat)
+            return False
         if points:
             self.send_keys(stat_locators.get('input'), points)
         stat_container.find_element(*stat_locators.get('button')).click()
+        return True
 
     def train_strength(self, points=None):
-        self.train('strength', points)
+        return self.train('strength', points)
 
     def train_defense(self, points=None):
-        self.train('defense', points)
+        return self.train('defense', points)
 
     def train_speed(self, points=None):
-        self.train('speed', points)
+        return self.train('speed', points)
 
     def train_dexterity(self, points=None):
-        self.train('dexterity', points)
+        return self.train('dexterity', points)
 
     def activate_gym(self):
         pass

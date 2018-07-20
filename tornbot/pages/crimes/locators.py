@@ -3,9 +3,12 @@
 from selenium.webdriver.common.by import By
 
 
-MAIN_CRIME_FORM_XPATH = '//form[@name="crimes"][ends-with(@action, "docrime")]'
-BASE_CRIME_XPATH = '//input[@id="{}"]//ancestor::ul[contains(@class, "item")]'
+BASE_CRIME_XPATH = ('//input[@name="crime"][@value="{}"]'
+                    '//ancestor::ul[contains(@class, "item")]')
 NERVE_COST_XPATH = '//li[starts-with(@class, "points")]'
+
+CRIME_FORM = (By.XPATH, '//form[@name="crimes"]')
+BACK_TO_CRIMES = (By.ID, 'back')
 
 SEARCH_CASH_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('search-for-cash'))
 SEARCH_THE_TRAIN_STATION = (
@@ -22,7 +25,15 @@ SEARCH_MOVIE_THEATER = (
     By.XPATH, BASE_CRIME_XPATH.format('search-movie-theater'))
 
 SELL_MEDIA_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('sell-copied-media'))
+
 SHOP_LIFT_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('shoplift'))
+LIFT_SWEET_SHOP = (By.XPATH, BASE_CRIME_XPATH.format('sweetshop'))
+CHOCOLATEBARS = (By.XPATH, BASE_CRIME_XPATH.format('chocolatebars'))
+
+LIFT_MARKET_STALL = (By.XPATH, BASE_CRIME_XPATH.format('marketstall'))
+LIFT_CLOTHES_SHOP = (By.XPATH, BASE_CRIME_XPATH.format('clothesshop'))
+LIFT_JEWELLERY_SHOP = (By.XPATH, BASE_CRIME_XPATH.format('jewelleryshop'))
+
 PICKPOCKET_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('pickpocket-someone'))
 LARCENY_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('larceny'))
 ARMED_ROBBERIES_CRIME = (By.XPATH, BASE_CRIME_XPATH.format('armed-robberies'))

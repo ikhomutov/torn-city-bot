@@ -1,9 +1,5 @@
 # coding: utf-8
 
-from scrapy.crawler import CrawlerProcess
-
-from crawler.spiders.users import UsersSpider
-
 from ..base.page import BasePage
 from .locators import LAST_PAGE
 
