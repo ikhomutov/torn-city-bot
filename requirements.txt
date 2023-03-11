@@ -1,5 +1,4 @@
-ipdb==0.11
-ipython==6.4.0
-python-dotenv-0.8.2
-selenium==3.13.0
-SQLAlchemy==1.2.9
+ipdb
+ipython
+python-dotenv
+selenium

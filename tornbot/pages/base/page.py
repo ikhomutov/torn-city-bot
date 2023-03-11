@@ -6,7 +6,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
-from ...wait import CustomWebDriverWait
 from . import elements
 from . import locators
 
@@ -24,8 +23,9 @@ class BasePage(object):
     base_url = 'https://www.torn.com/'
     url = ''
 
-    def __init__(self, driver):
+    def __init__(self, driver, captcha_solver):
         self.driver = driver
+        self.captcha_solver = captcha_solver
 
     @property
     def page_url(self):
@@ -95,11 +95,7 @@ class BasePage(object):
 
     def handle_captcha(self):
         if self.get_element(locators.CAPTCHA):
-            # Пока что ждем пока капчу решат вручную
-            print('Please solve the CAPTCHA')
-            CustomWebDriverWait(self.driver, 0).infinite_until(
-                ec.invisibility_of_element_located(locators.CAPTCHA))
-        return
+            self.captcha_solver.solve()
 
     def send_keys(self, locator, keys):
         element = self.driver.find_element(*locator)
